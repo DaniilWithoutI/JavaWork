@@ -9,7 +9,8 @@ byte b2 = -15;
 
             System.out.println(Integer.toBinaryString(a2));
             System.out.println(Integer.toBinaryString(b2));
-            System.out.println(Integer.toBinaryString(a2>>>b2));
+
+        /* System.out.println(Integer.toBinaryString(a2>>>b2)); Не сработает */
 
         System.out.print("~: ");
         System.out.print(~a1 + ", ");// 42 = 00101010; ~42 = 11010101
@@ -36,14 +37,14 @@ byte b2 = -15;
         System.out.println(b2<<5);//11110001<<1111000100000(int)<<00100000(Byte)
 
         System.out.print(">>: ");
-        System.out.print((a1>>2) + ", ");//00101010>>00001010
-        System.out.print((b1>>2) + ", ");//00001111>>00000011
-        System.out.print((a2>>2) + ", ");//11010110>>00110101
-        System.out.println(b2>>2);//11110001>>00111100
+        System.out.print((a1>>2) + ", ");//00101010->00001010
+        System.out.print((b1>>2) + ", ");//00001111->00000011
+        System.out.print((a2>>2) + ", ");//11010110->00110101
+        System.out.println(b2>>2);//11110001->00111100
 
         System.out.print(">>>: ");
         System.out.print((a1>>>2) + ", ");//00101010>>>00001010
         System.out.print((b1>>>2) + ", ");//00001111>>>00000011
-        System.out.print((a2>>>b2) + ", ");//11111111111111111111111111010110>>>111111111111111
+        //System.out.print((a2>>>b2) + ", ");//11111111111111111111111111010110>>>111111111111111 Не работает.
     }
 }
