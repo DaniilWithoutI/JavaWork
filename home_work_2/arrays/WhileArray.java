@@ -1,9 +1,9 @@
-package arrays;
+package home_work_2.arrays;
 
 import java.util.Scanner;
 import java.util.concurrent.ThreadLocalRandom;
 
-public class ArraysUtils6 {
+public class WhileArray {
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
         System.out.println("Введите размер массива: ");

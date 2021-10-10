@@ -1,10 +1,11 @@
-package arrays;
+package home_work_2.arrays;
 
 import java.util.Arrays;
 import java.util.Scanner;
-import java.util.concurrent.ThreadLocalRandom;
 
-public class ArraysUtils7 {
+import static home_work_2.utils.ArraysUtils.arrayRandom;
+
+public class ArraysMethods {
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
         System.out.println("Введите размер массива: ");
@@ -15,18 +16,10 @@ public class ArraysUtils7 {
         System.out.println(Arrays.toString(container));
         System.out.println(summaСhet(container));
         System.out.println(maxValue(container));
-        lessMiddleArifmethic(container);
+        lessMiddleArithmetic(container);
         twoSmallest(container);
         System.out.println(Arrays.toString(deleteInterval(container)));
-        System.out.println(summArray(container, maxValueExclusion));
-    }
-
-    public static int[] arrayRandom(int size, int maxValueExclusion){
-        int[] container = new int[size];
-        for (int i = 0; i < size; i++) {
-            container[i] = ThreadLocalRandom.current().nextInt(-maxValueExclusion, maxValueExclusion);
-        }
-        return container;
+        System.out.println(summArray(container));
     }
 
     public static int summaСhet(int[] container){
@@ -40,45 +33,42 @@ public class ArraysUtils7 {
     }
 
     public static int maxValue(int[] container){
-        int max = 0;
-        for (int i = 0; i < container.length; i += 2) {
-            if (container[i] > max)
+        int max = container[0];
+        for (int i = 0; i < container.length; i ++) {
+            if (container[i] >= max)
                 max = container[i];
         }
         return max;
     }
 
-    public static void lessMiddleArifmethic(int[] container){
-        int sum = 0;
+    public static void lessMiddleArithmetic(int[] container){
+        double sum = 0.0;
         for (int i = 0; i < container.length; i++) {
             sum += container[i];
         }
+        double middleArithmetic = sum/container.length;
         for (int j : container) {
-            if (j < (float)sum / container.length) {
+            if (j < middleArithmetic) {
                 System.out.print(j + " ");
             }
         }
     }
 
-    public static int twoSmallest(int[] container){
-        int min1 = 0, min2 = 0, index = 0;
-        for (int j : container) {
-            System.out.print(j + " ");
-        }
+    public static void twoSmallest(int[] container){
+        int min1 = 0;
+        int min2 = 0;
         System.out.print("\n2 наименьших элемента: ");
         for (int k = 0; k < container.length; k++) {
             if (container[k] <= container[0]){
                 min1 = container[k];
-                index = k;
             }
         }
         for (int k = 0; k < container.length; k++) {
-            if (k != index && container[k] <= container[0]){
+            if (container[k] <= container[0] && container[k] != min1){
                 min2 = container[k];
             }
         }
         System.out.println(min1 + " " + min2);
-        return 0;
     }
 
     public static int[] deleteInterval(int[] container){
@@ -91,7 +81,6 @@ public class ArraysUtils7 {
             if (container[i] >= a && b >= container[i]){
                 for (int j = i; j < container.length - 1; j++) {
                     container[j] = container[j + 1];
-                    i = 0;
                 }
                 container[container.length - 1] = 0;
             }
@@ -99,7 +88,7 @@ public class ArraysUtils7 {
         return container;
     }
 
-    public static int summArray(int[] container, int maxValueExclusion){
+    public static int summArray(int[] container){
         int sum = 0;
         for (int i = 0; i < container.length; i++) {
             if (container[i] < 0){

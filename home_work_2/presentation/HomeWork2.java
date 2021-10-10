@@ -1,4 +1,4 @@
-package presentation;
+package home_work_2.presentation;
 
 import java.util.Random;
 import java.util.Scanner;

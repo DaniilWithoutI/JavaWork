@@ -1,19 +1,19 @@
-package arrays;
+package home_work_2.utils;
 
-import java.util.Arrays;
 import java.util.Scanner;
-import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
-public class ArraysUtils2 {
-    public static void main(String[] args) {
+public class ArraysUtils {
+    public static int[] arrayFromConsole(){
         Scanner scan = new Scanner(System.in);
         System.out.println("Введите размер массива: ");
-        int size = scan.nextInt();
-        System.out.println("Введите максимальное значение: ");
-        int maxValueExclusion = scan.nextInt();
-        int[] container = arrayRandom(size, maxValueExclusion);
-        System.out.println(Arrays.toString(container));
+        int length = scan.nextInt();
+        int[] container = new int[length];
+        for (int i = 0; i < length; i++) {
+            System.out.println("Значение " + i + "-ого элемента массива:");
+            container[i] = scan.nextInt();
+        }
+        return container;
     }
 
     public static int[] arrayRandom(int size, int maxValueExclusion){

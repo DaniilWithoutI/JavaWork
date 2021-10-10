@@ -1,10 +1,10 @@
-package arrays;
+package home_work_2.arrays;
 
-import java.util.Arrays;
 import java.util.Scanner;
-import java.util.concurrent.ThreadLocalRandom;
 
-public class ArraysUtils3 {
+import static home_work_2.utils.ArraysUtils.arrayRandom;
+
+public class ForArray {
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
         System.out.println("Введите размер массива: ");
@@ -23,13 +23,5 @@ public class ArraysUtils3 {
         for (int i = container.length - 1; i >= 0; i--) {
             System.out.print(container[i] + " ");
         }
-    }
-
-    public static int[] arrayRandom(int size, int maxValueExclusion){
-        int[] container = new int[size];
-        for (int i = 0; i < size; i++) {
-            container[i] = ThreadLocalRandom.current().nextInt(0, maxValueExclusion + 1);
-        }
-        return container;
     }
 }
