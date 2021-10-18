@@ -35,7 +35,7 @@ public class StudentMain {
         StudentAgeComparator ageComparator = new StudentAgeComparator();
         StudentNameComparator nameComparator = new StudentNameComparator();
 
-        System.out.println("Сколько студентов вывести?");
+        System.out.println("По сколько студентов вывести?");
         int n = scan.nextInt();
 //        От меньшего к большему по имени
         System.out.println("Сортировка по имени:");
@@ -82,6 +82,20 @@ public class StudentMain {
         return name;
     }
 
+    public static void nameInput(FileWriter writer) throws IOException {
+        writer.write("Изя\n");
+        writer.write("Гойфман\n");
+        writer.write("Ицхак\n");
+        writer.write("Сарочка\n");
+        writer.write("Циля\n");
+        writer.write("Абрашенька\n");
+        writer.write("Циммерман\n");
+        writer.write("Яшенька\n");
+        writer.write("Фимочка\n");
+        writer.write("Мойшенька\n");
+        writer.close();
+    }
+
     public static String nameGenerator(String fileName){
         List<String> names = new ArrayList<>();
 
@@ -92,7 +106,14 @@ public class StudentMain {
             try {
                 reader = new FileReader("src/home_work_5/default.txt");
             } catch (FileNotFoundException e2) {
-                throw new RuntimeException("Сорян, не вижу вообще никаких файлов.", e2);
+                try {
+                    File file = new File("src/home_work_5/new_default.txt");
+                    FileWriter writer = new FileWriter(file, false);
+                    nameInput(writer);
+                    reader = new FileReader(file);
+                } catch (IOException e3){
+                    throw new RuntimeException("Я ну вообще все перепробовал.", e3);
+                }
             }
         }
 
@@ -105,6 +126,11 @@ public class StudentMain {
             throw new RuntimeException("Прости, я читал, но оно не читается.", e);
         }
 
+        try {
+            bufferedReader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         ThreadLocalRandom rnd = ThreadLocalRandom.current();
         return names.get(rnd.nextInt(names.size()));
     }
