@@ -5,14 +5,14 @@ public class Student {
     private final String name;
     private final int age;
     private final double mark;
-    private final boolean isOlympiad;
+    private final boolean olympiad;
 
     public Student(int serialNumber, String name, int age, double mark, boolean isOlympiad){
         this.serialNumber = serialNumber;
         this.name = name;
         this.age = age;
         this.mark = mark;
-        this.isOlympiad = isOlympiad;
+        this.olympiad = isOlympiad;
     }
 
     public int getSerialNumber() {
@@ -31,12 +31,12 @@ public class Student {
         return mark;
     }
 
-    public boolean isOlympiad() {
-        return isOlympiad;
+    public boolean olympiad() {
+        return olympiad;
     }
 
     @Override
     public String toString() {
-        return "Student " + serialNumber + ": {" + name + ", " + age + ", " + mark + ", " + isOlympiad + "}";
+        return "Student " + serialNumber + ": {" + name + ", " + age + ", " + mark + ", " + olympiad + "}";
     }
 }
