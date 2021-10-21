@@ -21,12 +21,12 @@ public class StudentMain {
         for (int i = 0; i < 10000; i++){
 //            String name = nameGenerator(rand);
 //            String name = nameGenerator();
-            String name = nameGenerator("src/home_work_5/names.txt");
+            String name = nameGenerator("src/home_work_5/files/names.txt");
             int age = rand.nextInt(7, 17 + 1);
             double mark = rand.nextDouble(0.0, 10.0);
             boolean olympiad = rand.nextBoolean();
             students.add(new Student(i, name, age, mark, olympiad));
-            if (students.get(i).getMark() > 8 || students.get(i).getAge() >= 12){
+            if (students.get(i).getMark() > 8 && students.get(i).getAge() >= 12){
                 filteredStudents.add(students.get(i));
             }
         }
@@ -40,13 +40,13 @@ public class StudentMain {
 //        От меньшего к большему по имени
         System.out.println("Сортировка по имени:");
         filteredStudents.sort(nameComparator);
-        fromSmallestToLargest(filteredStudents, n);
+        toTop(filteredStudents, n);
 
 //          От большего к меньшему по оценке
-        filteredStudents.sort(markComparator);
+        filteredStudents.sort(markComparator.reversed());
         System.out.println();
         System.out.println("Сортировка по оценкам:");
-        fromLargestToSmallest(filteredStudents, n);
+        toTop(filteredStudents, n);
 
 //        По возрасту и оценке
         filteredStudents.sort(ageComparator.thenComparing(markComparator));
@@ -58,7 +58,7 @@ public class StudentMain {
             for (int j = filteredStudents.size() - 1; j >= 0; j--) {
                 if(filteredStudents.get(j).getAge() == i){
                     int index = filteredStudents.lastIndexOf(filteredStudents.get(j));
-                    fromLargestToSmallest(filteredStudents.subList(index - n, index + 1), n);
+                    toTop(filteredStudents.subList(index - n, index + 1), n);
                     break;
                 }
             }
@@ -104,10 +104,10 @@ public class StudentMain {
             reader = new FileReader(fileName);
         } catch (FileNotFoundException e1){
             try {
-                reader = new FileReader("src/home_work_5/default.txt");
+                reader = new FileReader("src/home_work_5/files/default.txt");
             } catch (FileNotFoundException e2) {
                 try {
-                    File file = new File("src/home_work_5/new_default.txt");
+                    File file = new File("src/home_work_5/files/new_default.txt");
                     FileWriter writer = new FileWriter(file, false);
                     nameInput(writer);
                     reader = new FileReader(file);
@@ -135,14 +135,8 @@ public class StudentMain {
         return names.get(rnd.nextInt(names.size()));
     }
 
-    public static void fromSmallestToLargest(List<Student> filteredStudents, int n){
+    public static void toTop(List<Student> filteredStudents, int n){
         for (int i = 0; i < n; i++) {
-            System.out.println(filteredStudents.get(i).toString());
-        }
-    }
-
-    public static void fromLargestToSmallest(List<Student> filteredStudents, int n){
-        for (int i = filteredStudents.size() - 1; i >= filteredStudents.size() - n; i--) {
             System.out.println(filteredStudents.get(i).toString());
         }
     }
