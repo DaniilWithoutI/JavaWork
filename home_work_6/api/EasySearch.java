@@ -1,17 +1,32 @@
 package home_work_6.api;
 
-import home_work_6.ISearchEngine;
-
-import java.util.Arrays;
-
 public class EasySearch implements ISearchEngine {
-    public long search(String text, String word){
-        long count = 0;
-        int i = -1;
-        while (text.indexOf(word, i + 1) != -1) {
-            i = text.indexOf(word, i + 1);
-            count++;
+
+        String stopChars = " !\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~";
+        public long search(String text, String word) {
+            int index = -1;
+            long count = 0;
+            do {
+                index = text.indexOf(word, index + 1);
+                if (index != -1){
+                    char before = text.charAt(index - 1);
+                    char after = text.charAt(index + word.length());
+                    int afterIndex = index + word.length();
+                    if (afterIndex <= text.length()){
+                        if(afterIndex == text.length()){
+                            count++;
+                            return count;
+                        }
+                    }
+                    if (isStopChar(before) && isStopChar(after)){
+                        count++;
+                    }
+                }
+            } while(index != -1);
+            return count;
         }
-        return count;
-    }
+
+        private boolean isStopChar(char c){
+            return stopChars.indexOf(c) != -1;
+        }
 }

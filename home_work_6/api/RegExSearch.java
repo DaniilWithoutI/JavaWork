@@ -1,19 +1,18 @@
 package home_work_6.api;
 
-import home_work_6.ISearchEngine;
+import home_work_6.api.decorators.SearchDecorator;
+import home_work_6.api.decorators.SearchExcludingRegister;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class RegExSearch implements ISearchEngine {
-    private long count = 0;
+
     public long search(String text, String word) {
-        Pattern pattern = Pattern.compile(word);
+        String regex = "\\b" + word + "\\b";
+        Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(text);
-        if (matcher.find()){
-            count++;
-            text = matcher.replaceFirst("");
-            search(text, word);
-        }
-        return count;
+
+        return matcher.results().count();
     }
 }
