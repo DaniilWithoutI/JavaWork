@@ -25,20 +25,18 @@ public class CollectionMain {
          */
         ISearchEngine searchEngine1 = new EasySearch();
         ISearchEngine searchEngine2 = new RegExSearch();
+        SearchDecorator searchDecorator = new SearchEnginePunctuationNormalizer(new SearchExcludingRegister(new RegExSearch()));
 
-        SearchExcludingRegister excludingRegister = new SearchExcludingRegister(searchEngine2);
-        System.out.println("Проверка декоратора 1: " + excludingRegister.search(content, "очЕнЬ"));
-        SearchEnginePunctuationNormalizer normalizer = new SearchEnginePunctuationNormalizer(excludingRegister);
-        System.out.println("Проверка декоратора 2: " + normalizer.search(content, "очень"));
-        System.out.println("Проверка декоратора 3: " + normalizer.search(content, "очЕнЬ"));
+        System.out.println("Война без учета регистра: " + searchDecorator.search(content, "ВОйнА"));
+        System.out.println("Война без учета регистра: " + searchDecorator.search(content, "война"));
 
-        System.out.println("Война: " + searchEngine1.search(content, "война"));
+//        System.out.println("Война: " + searchEngine1.search(content, "война"));
         System.out.println("Война c помощью RegExSearch: " + searchEngine2.search(content, "война"));
 
-        System.out.println("И c помощью EasySearch: " + searchEngine1.search(content, "и"));
+//        System.out.println("И c помощью EasySearch: " + searchEngine1.search(content, "и"));
         System.out.println("И c помощью RegExSearch: " + searchEngine2.search(content, "и"));
 
-        System.out.println("Мир c помощью EasySearch: " + searchEngine1.search(content, "мир"));
+//        System.out.println("Мир c помощью EasySearch: " + searchEngine1.search(content, "мир"));
         System.out.println("Мир c помощью RegExSearch: " + searchEngine2.search(content, "мир"));
 
         for (String separator : separators) {
