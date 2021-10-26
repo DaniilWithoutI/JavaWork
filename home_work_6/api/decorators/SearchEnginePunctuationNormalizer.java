@@ -2,13 +2,12 @@ package home_work_6.api.decorators;
 
 import home_work_6.api.ISearchEngine;
 
-public class SearchEnginePunctuationNormalizer implements ISearchEngine{
+public class SearchEnginePunctuationNormalizer extends SearchDecorator{
     private final String[] separators = {"!", "\"", "#", "$", "%", "&", "'", "(", ")", "*", "+", ",", "-", ".", "/", ":", ";", "<"
             , "=", ">", "?", "@", "[", "\\", "]", "^", "_", "`", "{", "|", "}", "~", "\n", "\r"};
-    private ISearchEngine searchEngine;
 
     public SearchEnginePunctuationNormalizer(ISearchEngine searchEngine) {
-        this.searchEngine = searchEngine;
+        super(searchEngine);
     }
 
     @Override

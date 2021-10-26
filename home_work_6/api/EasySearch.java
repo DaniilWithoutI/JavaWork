@@ -1,23 +1,35 @@
 package home_work_6.api;
 
 public class EasySearch implements ISearchEngine {
+        String stopChars = " !\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~\n";
 
-        String stopChars = " !\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~";
+        @Override
         public long search(String text, String word) {
+            int wordLength = word.length();
+            long textLength = text.length();
             int index = -1;
             long count = 0;
             do {
                 index = text.indexOf(word, index + 1);
                 if (index != -1){
+
+                    if(index == 0){
+                        count++;
+                        break;
+                    }
+
                     char before = text.charAt(index - 1);
-                    char after = text.charAt(index + word.length());
-                    int afterIndex = index + word.length();
-                    if (afterIndex <= text.length()){
-                        if(afterIndex == text.length()){
+                    int afterIndex = index + wordLength;
+
+                    if (afterIndex <= textLength){
+                        if(afterIndex == textLength){
                             count++;
-                            return count;
+                            break;
                         }
                     }
+
+                    char after = text.charAt(index + wordLength);
+
                     if (isStopChar(before) && isStopChar(after)){
                         count++;
                     }

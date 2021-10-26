@@ -15,7 +15,7 @@ import java.util.*;
 
 public class CollectionMain {
     public static void main(String[] args) {
-        String filePath = "src/home_work_6/files/test.txt";
+        String filePath = "src/home_work_6/files/Война и мир_книга.txt";
         String[] separators = {"!", "\"", "#", "$", "%", "&", "'", "(", ")", "*", "+", ",", "-", ".", "/", ":", ";", "<"
                 , "=", ">", "?", "@", "[", "\\", "]", "^", "_", "`", "{", "|", "}", "~", "\n", "\r"};
         String content = readAllBytesJava7(filePath);
@@ -27,19 +27,19 @@ public class CollectionMain {
         ISearchEngine searchEngine2 = new RegExSearch();
 
         SearchExcludingRegister excludingRegister = new SearchExcludingRegister(searchEngine2);
-        System.out.println(excludingRegister.search(content, "очЕнЬ"));
+        System.out.println("Проверка декоратора 1: " + excludingRegister.search(content, "очЕнЬ"));
         SearchEnginePunctuationNormalizer normalizer = new SearchEnginePunctuationNormalizer(excludingRegister);
-//        System.out.println(normalizer.search(content, "очень"));
-        System.out.println(normalizer.search(content, "очЕнЬ"));
+        System.out.println("Проверка декоратора 2: " + normalizer.search(content, "очень"));
+        System.out.println("Проверка декоратора 3: " + normalizer.search(content, "очЕнЬ"));
 
-//        System.out.println("Война: " + searchEngine1.search(content, "война"));
-//        System.out.println("Война c помощью RegExSearch: " + searchEngine2.search(content, "война"));
-//
-//        System.out.println("И c помощью EasySearch: " + searchEngine1.search(content, "и"));
-//        System.out.println("И c помощью RegExSearch: " + searchEngine2.search(content, "и"));
-//
-//        System.out.println("Мир c помощью EasySearch: " + searchEngine1.search(content, "мир"));
-//        System.out.println("Мир c помощью RegExSearch: " + searchEngine2.search(content, "мир"));
+        System.out.println("Война: " + searchEngine1.search(content, "война"));
+        System.out.println("Война c помощью RegExSearch: " + searchEngine2.search(content, "война"));
+
+        System.out.println("И c помощью EasySearch: " + searchEngine1.search(content, "и"));
+        System.out.println("И c помощью RegExSearch: " + searchEngine2.search(content, "и"));
+
+        System.out.println("Мир c помощью EasySearch: " + searchEngine1.search(content, "мир"));
+        System.out.println("Мир c помощью RegExSearch: " + searchEngine2.search(content, "мир"));
 
         for (String separator : separators) {
             if(content.contains(separator)){
@@ -54,7 +54,7 @@ public class CollectionMain {
         Set<String> uniqueWords = new HashSet<>(words);
         System.out.println("Кол-во использованных слов: " + uniqueWords.size());
 
-//        topWords(words);
+        topWords(words);
     }
 
     private static String readAllBytesJava7(String filePath) {
