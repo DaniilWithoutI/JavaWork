@@ -2,6 +2,10 @@ package home_work_2.sorts;
 
 public class SortUtils {
 
+    /**
+     * Сортирует массив пузырьковым методом
+     * @param array - массив для сортировки
+     */
     public static void bubbleSort(int[] array) {
         boolean isSorted;
             do {
@@ -23,6 +27,10 @@ public class SortUtils {
         }
     }
 
+    /**
+     * Сортирует массив шейкерным методом
+     * @param array - массив для сортировки
+     */
     public static void shakeSort(int[] array){
             int left = 1;
             int right = array.length;

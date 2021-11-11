@@ -1,98 +1,41 @@
 package home_work_6;
 
-import home_work_6.api.EasySearch;
-import home_work_6.api.ISearchEngine;
-import home_work_6.api.RegExSearch;
-import home_work_6.api.decorators.SearchDecorator;
-import home_work_6.api.decorators.SearchEnginePunctuationNormalizer;
-import home_work_6.api.decorators.SearchExcludingRegister;
-import home_work_6.comparator.MapValueComparator;
-
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
+import home_work_6.search.EasySearch;
+import home_work_6.search.RegExSearch;
+import home_work_6.search.api.ISearchEngine;
+import home_work_6.search.api.decorators.SearchDecorator;
+import home_work_6.search.api.decorators.SearchEnginePunctuationNormalizer;
+import home_work_6.search.api.decorators.SearchExcludingRegister;
 import java.util.*;
+
+import static home_work_6.Utils.FileUtils.readAllBytes;
+import static home_work_6.Utils.ListTop.topWords;
 
 public class CollectionMain {
     public static void main(String[] args) {
         String filePath = "src/home_work_6/files/Война и мир_книга.txt";
-        String[] separators = {"!", "\"", "#", "$", "%", "&", "'", "(", ")", "*", "+", ",", "-", ".", "/", ":", ";", "<"
-                , "=", ">", "?", "@", "[", "\\", "]", "^", "_", "`", "{", "|", "}", "~", "\n", "\r"};
-        String content = readAllBytesJava7(filePath);
+        String content = readAllBytes(filePath);
 
-        /**
-         * Вызвал интерфейс до очистки строки от символов, чтобы проверить декораторы.
-         */
-        ISearchEngine searchEngine1 = new EasySearch();
-        ISearchEngine searchEngine2 = new RegExSearch();
-        SearchDecorator searchDecorator = new SearchEnginePunctuationNormalizer(new SearchExcludingRegister(new RegExSearch()));
+        String[] newContent = content.replaceAll("(\\p{Punct}|\\p{Space}|\\p{Graph}){1,}", " ").split(" ");
 
-        System.out.println("Война без учета регистра: " + searchDecorator.search(content, "ВОйнА"));
-        System.out.println("Война без учета регистра: " + searchDecorator.search(content, "война"));
+        List<String> words = new ArrayList<>();
 
-//        System.out.println("Война: " + searchEngine1.search(content, "война"));
-        System.out.println("Война c помощью RegExSearch: " + searchEngine2.search(content, "война"));
-
-//        System.out.println("И c помощью EasySearch: " + searchEngine1.search(content, "и"));
-        System.out.println("И c помощью RegExSearch: " + searchEngine2.search(content, "и"));
-
-//        System.out.println("Мир c помощью EasySearch: " + searchEngine1.search(content, "мир"));
-        System.out.println("Мир c помощью RegExSearch: " + searchEngine2.search(content, "мир"));
-
-        for (String separator : separators) {
-            if(content.contains(separator)){
-                content = content.replace(separator, " ");
+        for (String word : newContent) {
+            if(!word.isBlank()){
+                words.add(word);
             }
         }
 
-        List<String> words = new ArrayList<>(Arrays.asList(content.split(" ")));
-        if(words.contains("")){
-            words.removeAll(Collections.singleton(""));
-        }
         Set<String> uniqueWords = new HashSet<>(words);
+
         System.out.println("Кол-во использованных слов: " + uniqueWords.size());
 
-        topWords(words);
-    }
+        ISearchEngine searchEngine = new EasySearch();
+        ISearchEngine searchEngine1 = new RegExSearch();
 
-    private static String readAllBytesJava7(String filePath) {
-        String content = "";
-        try{
-            content = new String (Files.readAllBytes(Paths.get(filePath)));
-        }
-        catch (IOException e){
-            e.printStackTrace();
-        }
-        return content;
-    }
+        System.out.println(searchEngine.search(content, "и"));
+        System.out.println(searchEngine1.search(content, "и"));
 
-    public static void topWords(List<String> words){
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Введите N: ");
-        int n = scanner.nextInt();
-
-        if(words.contains("")){
-            words.removeAll(Collections.singleton(""));
-        }
-
-        Map<String, Integer> wordsCount = new HashMap<>();
-
-        for (String word : words) {
-            Integer count;
-            if(!wordsCount.containsKey(word)){
-                wordsCount.put(word, 1);
-            } else{
-                count = wordsCount.get(word);
-                count++;
-                wordsCount.put(word, count);
-            }
-        }
-
-        List<Map.Entry<String, Integer>> sortedWords = new ArrayList<>(wordsCount.entrySet());
-        MapValueComparator valueComparator = new MapValueComparator();
-        sortedWords.sort(valueComparator);
-        for (int i = 0; i < n; i++){
-            System.out.println(sortedWords.get(i));
-        }
+//        topWords(words);
     }
 }

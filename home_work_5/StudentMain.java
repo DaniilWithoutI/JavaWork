@@ -107,7 +107,7 @@ public class StudentMain {
                 reader = new FileReader("src/home_work_5/files/default.txt");
             } catch (FileNotFoundException e2) {
                 try {
-                    File file = new File("src/home_work_5/files/new_default.txt");
+                    File file = new File("src/home_work_5/files/default.txt");
                     FileWriter writer = new FileWriter(file, false);
                     nameInput(writer);
                     reader = new FileReader(file);

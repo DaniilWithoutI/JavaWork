@@ -21,9 +21,11 @@ public class CalculatorWithOperator implements ICalculator {
 
     public double pow (double a, int b){
         double result = 1;
+
         for (int i = 0; i < abs(b); i++) {
             result *= a;
         }
+
         if (b >= 0){
             return result;
         } else {
@@ -32,11 +34,7 @@ public class CalculatorWithOperator implements ICalculator {
     }
 
     public double sqrt (double a){
-        int i = 0;
-        while (i * i != a){
-            i++;
-        }
-        return i;
+        return Math.sqrt(a);
     }
 
     public double abs (double a){

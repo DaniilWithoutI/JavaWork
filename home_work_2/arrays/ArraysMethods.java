@@ -1,27 +1,13 @@
 package home_work_2.arrays;
 
-import java.util.Arrays;
 import java.util.Scanner;
 
-import static home_work_2.utils.ArraysUtils.arrayRandom;
-
 public class ArraysMethods {
-    public static void main(String[] args) {
-        Scanner scan = new Scanner(System.in);
-        System.out.println("Введите размер массива: ");
-        int size = scan.nextInt();
-        System.out.println("Введите максимальное значение: ");
-        int maxValueExclusion = scan.nextInt();
-        int[] container = arrayRandom(size, maxValueExclusion);
-        System.out.println(Arrays.toString(container));
-        System.out.println(summaСhet(container));
-        System.out.println(maxValue(container));
-        lessMiddleArithmetic(container);
-        twoSmallest(container);
-        System.out.println(Arrays.toString(deleteInterval(container)));
-        System.out.println(summArray(container));
-    }
-
+    /**
+     * Вычисляет сумму четных элементов
+     * @param container массив
+     * @return int sum
+     */
     public static int summaСhet(int[] container){
         int sum = 0;
         for (int i = 0; i < container.length; i++) {
@@ -32,6 +18,11 @@ public class ArraysMethods {
         return sum;
     }
 
+    /**
+     * Находит максимальное значение среди элементов массива
+     * @param container массив
+     * @return int maxValue
+     */
     public static int maxValue(int[] container){
         int max = container[0];
         for (int i = 0; i < container.length; i ++) {
@@ -41,6 +32,10 @@ public class ArraysMethods {
         return max;
     }
 
+    /**
+     * Выводит значение элементов массива, которые меньше среднего арифметического
+     * @param container массив
+     */
     public static void lessMiddleArithmetic(int[] container){
         double sum = 0.0;
         for (int i = 0; i < container.length; i++) {
@@ -54,6 +49,10 @@ public class ArraysMethods {
         }
     }
 
+    /**
+     * Находит 2 наименьших элемента
+     * @param container массив
+     */
     public static void twoSmallest(int[] container){
         int min1 = 0;
         int min2 = 0;
@@ -71,6 +70,11 @@ public class ArraysMethods {
         System.out.println(min1 + " " + min2);
     }
 
+    /**
+     * Удаляет выбранный интервал в массиве
+     * @param container массив
+     * @return Отредактированный массив
+     */
     public static int[] deleteInterval(int[] container){
         Scanner scan = new Scanner(System.in);
         System.out.println("Введите нижнее значение интервала:");
@@ -88,6 +92,11 @@ public class ArraysMethods {
         return container;
     }
 
+    /**
+     * Находит сумму элементов массива
+     * @param container массив
+     * @return сумма элементов
+     */
     public static int summArray(int[] container){
         int sum = 0;
         for (int i = 0; i < container.length; i++) {

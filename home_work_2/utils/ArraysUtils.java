@@ -4,6 +4,10 @@ import java.util.Scanner;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class ArraysUtils {
+    /**
+     * Заполняет массив из консоли
+     * @return заполненный массив
+     */
     public static int[] arrayFromConsole(){
         Scanner scan = new Scanner(System.in);
         System.out.println("Введите размер массива: ");
@@ -16,6 +20,12 @@ public class ArraysUtils {
         return container;
     }
 
+    /**
+     * заполняет массив рандомными значениями
+     * @param size размер массива
+     * @param maxValueExclusion максимальное значение элемента
+     * @return заполненный массив
+     */
     public static int[] arrayRandom(int size, int maxValueExclusion){
         int[] container = new int[size];
         for (int i = 0; i < size; i++) {

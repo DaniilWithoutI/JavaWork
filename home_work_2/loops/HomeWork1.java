@@ -1,28 +1,28 @@
 package home_work_2.loops;
 
-import java.util.Scanner;
-
 public class HomeWork1 {
-    public static void main(String[] args) {
-        Scanner scan = new Scanner(System.in);
-        System.out.println("Введите число: ");
-        int number = scan.nextInt();
-        if (number < 1){
-            System.out.println("Дурачок");
-            return;
-        } else if (number == 1){
-            System.out.println(1);
-            return;
+    /**
+     * Находит факториал числа и выводит в виде строки
+     * @param number - число
+     * @return Строку вида 1 * 2 * 3 * 4 * 5 = 120
+     */
+    public String numberAdd(int number) {
+        if (number == 1) {
+            return "result = 1";
+        } else if (number < 0){
+            number = -number;
         }
-            int result = 1;
-            for (int i = 1; i <= number; i++) {
-                result *= i;
-                if(i < number) {
-                    System.out.print(i + " * ");
-                } else {
-                    System.out.print(i);
-                }
+
+        StringBuilder builder = new StringBuilder();
+        int result = 1;
+        for (int i = 1; i <= number; i++) {
+            result *= i;
+            if (i < number) {
+                builder.append(i).append(" * ");
+            } else {
+                builder.append(i);
             }
-            System.out.print(" = " + result);
+        }
+        return builder + " = " + result;
     }
 }

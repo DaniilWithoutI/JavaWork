@@ -1,0 +1,9 @@
+src\home_work_6\files\result.txt - и - 0
+src\home_work_6\files\test.txt - и - 2
+src\home_work_6\files\Война и мир_книга.txt - и - 13877
+src\home_work_6\files\result.txt - и - 4
+src\home_work_6\files\test.txt - и - 2
+src\home_work_6\files\Война и мир_книга.txt - и - 13875
+src\home_work_6\files\result.txt - мир - 2
+src\home_work_6\files\test.txt - мир - 0
+src\home_work_6\files\Война и мир_книга.txt - мир - 33
